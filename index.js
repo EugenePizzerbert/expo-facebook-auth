@@ -18,8 +18,8 @@ export default class Forgot extends React.Component {
     super(props)
 
     this.state = ({
-      email: '',
-      password: ''
+      email: 'dongs@gmail.io',
+      password: '123456'
     })
   }
 
@@ -32,7 +32,7 @@ export default class Forgot extends React.Component {
         return;
       }
 
-      firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
+      firebase.auth().createUserWithEmailAndPassword(email, password)
 
     } catch (error) {
       console.log(error.toString());
@@ -43,7 +43,7 @@ export default class Forgot extends React.Component {
   loginUser = ( email, password ) => {
 
     try {
-      firebase.auth().signInAndRetrieveDataWithCredential(email, password).then(function (user) {
+      firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
         console.log(user); 
       })
     } catch (error) {
@@ -77,6 +77,7 @@ export default class Forgot extends React.Component {
           <View>
             <Text>Email</Text>
             <TextInput
+              style={{color:'red'}}
               autoCorrect={false}
               autoCapitalize="none"
               onChangeText={(email) => this.setState({ email })} 
@@ -87,6 +88,7 @@ export default class Forgot extends React.Component {
             <Text>Password</Text>
             <TextInput
               secureTextEntry={true}
+              style={{color:'red'}}
               autoCorrect={false}
               autoCapitalize="none"
               onChangeText={(password) => this.setState({password})}
@@ -120,7 +122,7 @@ export default class Forgot extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ddd',
     justifyContent: 'center',
     padding: 10
   },
